@@ -26,10 +26,18 @@ let package = Package(
                 .product(name: "Starscream", package: "Starscream"),
                 .product(name: "SynchronousWaiter", package: "CommandLineToolkit"),
                 "EmceePluginModels",
+                "SimulatorVideoRecorder",
             ]
         ),
         .target(
             name: "EmceePluginModels"
-        )
+        ),
+        .target(
+            name: "SimulatorVideoRecorder",
+            dependencies: [
+                .product(name: "PathLib", package: "CommandLineToolkit"),
+                .product(name: "ProcessController", package: "CommandLineToolkit"),
+            ]
+        ),
     ]
 )
