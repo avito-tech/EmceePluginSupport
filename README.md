@@ -54,3 +54,8 @@ exit(try main())
 ```
 
 `Plugin` class will automatically stop streaming events when web socket gets disconnected, allowing `join()` method to return.
+
+## Helpers
+
+You can use `SimulatorVideoRecorder` to capture the video of the simulator. 
+You should cancel all ongoing recording after you receive `didRun` event.
