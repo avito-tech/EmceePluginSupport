@@ -1,17 +1,17 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.9
 import PackageDescription
 let package = Package(
     name: "EmceePluginSupport",
     platforms: [
-        .macOS(.v11),
+        .macOS(.v13),
     ],
     products: [
         .library(name: "EmceePlugin", targets: ["EmceePlugin"]),
         .library(name: "EmceePluginModels", targets: ["EmceePluginModels"]),
     ],
     dependencies: [
-        .package(name: "CommandLineToolkit", url: "https://github.com/avito-tech/CommandLineToolkit.git", from: "1.0.20"),
-        .package(name: "Starscream", url: "https://github.com/daltoniam/Starscream.git", from: "3.0.6"),
+        .package(url: "https://github.com/avito-tech/CommandLineToolkit.git", from: "2.0.0"),
+        .package(url: "https://github.com/daltoniam/Starscream.git", from: "3.0.6"),
     ],
     targets: [
         .target(
