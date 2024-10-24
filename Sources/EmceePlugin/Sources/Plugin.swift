@@ -24,14 +24,14 @@ public final class Plugin {
     private let eventReceiver: EventReceiver
     private let loggingSetup: LoggingSetup
     
-    private let di: DependencyResolver = DiContext.current
-    
     public init(
         stderrVerbosity: Verbosity = .debug,
         detailedLogVerbosity: Verbosity = .trace,
         onNewEvent: @escaping (PluginAppleTestEvent) -> ()
     ) throws {
-        self.loggingSetup = try di.resolve()
+        self.loggingSetup = try withDependencies(from: [EmceeModuleDependencies()]) {
+            try DiContext.current.resolve()
+        }
         self.logger = try loggingSetup.createLogger(
             stderrVerbosity: stderrVerbosity,
             detailedLogVerbosity: detailedLogVerbosity,
