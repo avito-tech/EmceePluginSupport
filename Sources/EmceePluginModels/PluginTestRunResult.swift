@@ -11,6 +11,7 @@ public struct PluginTestRunResult: Codable, CustomStringConvertible, Hashable {
     public let succeeded: Bool
     public let exceptions: [PluginTestException]
     public let logs: [String]
+    public let status: PluginTestRunStatus
 
     public var finishTime: TimeInterval {
         return startTime + duration
@@ -21,13 +22,15 @@ public struct PluginTestRunResult: Codable, CustomStringConvertible, Hashable {
         duration: TimeInterval,
         succeeded: Bool,
         exceptions: [PluginTestException],
-        logs: [String]
+        logs: [String],
+        status: PluginTestRunStatus,
     ) {
         self.succeeded = succeeded
         self.exceptions = exceptions
         self.logs = logs
         self.startTime = startTime
         self.duration = duration
+        self.status = status
     }
     
     public var description: String {
@@ -39,4 +42,13 @@ public struct PluginTestRunResult: Codable, CustomStringConvertible, Hashable {
         }
         return "<\(result.joined(separator: ", "))>"
     }
+}
+
+public enum PluginTestRunStatus: String, Codable, CustomStringConvertible {
+    case success
+    case failure
+    case skipped
+    case broken
+
+    public var description: String { rawValue }
 }
